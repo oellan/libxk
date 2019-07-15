@@ -3,6 +3,15 @@ eXtended Kotlin _(libxk)_
 
 > Some Kotlin/Native additions inspired by the JVM API
 
+Dependencies
+------------
+
+### Linux (x64)
+
+| Name     | Link                                |
+|----------|-------------------------------------|
+| libcpuid | https://github.com/anrieff/libcpuid |
+
 Contribute
 ----------
 

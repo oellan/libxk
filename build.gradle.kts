@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
 
 group = "dev.oellan.libxk"
-version = "0"
+version = "1"
 
 buildscript {
 
