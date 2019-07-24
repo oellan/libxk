@@ -15,7 +15,7 @@ Dependencies
 Contribute
 ----------
 
-You are welcomed to contribute by createing issues and pull requests.
+You are welcomed to contribute by creating issues and pull requests.
 
 License
 -------
