@@ -27,4 +27,10 @@ The country referenced in article 15 is France.
 You can find the full license in French in the [LICENSE](LICENSE) file or translated into your language
 [here][eupl-list].
 
+Some code fragment might have their own license. When such thing happens, this template is used as the function KDoc :
+
+> This function is copied from &lt;insert origin url here&gt;
+>
+> This function is licensed under &lt;add license here&gt;
+
 [eupl-list]: https://joinup.ec.europa.eu/collection/eupl/eupl-text-11-12
