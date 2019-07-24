@@ -12,15 +12,9 @@ import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.ptr
 import platform.linux.sysinfo
 
-/**
- * Object containing information about memory (RAM).
- */
 @ExperimentalUnsignedTypes
 actual object Memory {
 
-    /**
-     * Amount of free virtual memory in bytes.
-     */
     actual val freeVirtualMemory: Long
         get() = memScoped {
 
@@ -29,9 +23,6 @@ actual object Memory {
             ((info.freeram + info.freeswap) * info.mem_unit).toLong()
         }
 
-    /**
-     * Total amount of virtual memory in bytes.
-     */
     actual val totalVirtualMemory by lazy {
 
         memScoped {
@@ -42,9 +33,6 @@ actual object Memory {
         }
     }
 
-    /**
-     * Amount of free physical memory in bytes.
-     */
     actual val freePhysicalMemory: Long
         get() = memScoped {
 
@@ -53,9 +41,6 @@ actual object Memory {
             (info.freeram * info.mem_unit).toLong()
         }
 
-    /**
-     * Total amount of physical memory in bytes.
-     */
     actual val totalPhysicalMemory by lazy {
 
         memScoped {

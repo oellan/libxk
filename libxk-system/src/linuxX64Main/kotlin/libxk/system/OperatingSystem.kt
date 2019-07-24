@@ -14,19 +14,10 @@ import kotlinx.cinterop.toKString
 import platform.posix.uname
 import platform.posix.utsname
 
-/**
- * Object containing information about the operating system.
- */
 actual object OperatingSystem {
 
-    /**
-     * The OS' family.
-     */
     actual val family = Family.LINUX
 
-    /**
-     * The OS version.
-     */
     actual val version by lazy {
 
         memScoped {
@@ -37,9 +28,6 @@ actual object OperatingSystem {
         }
     }
 
-    /**
-     * An enum describing an operating system family.
-     */
     actual enum class Family {
 
         WINDOWS,

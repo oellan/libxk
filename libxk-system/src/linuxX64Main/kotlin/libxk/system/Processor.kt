@@ -18,9 +18,6 @@ import native.libcpuid.cpuid_present
 import platform.posix.uname
 import platform.posix.utsname
 
-/**
- * Object containing information about the installed processor(s) on the system.
- */
 actual object Processor {
 
     private val cpuid: cpu_id_t = {
@@ -53,25 +50,16 @@ actual object Processor {
         }
     }
 
-    /**
-     * The number of physical core.
-     */
     actual val physicalCoreCount by lazy {
 
         cpuid.num_cores
     }
 
-    /**
-     * The number of logical core.
-     */
     actual val logicalCoreCount by lazy {
 
         cpuid.num_logical_cpus
     }
 
-    /**
-     * The architecture of the processor.
-     */
     actual val architecture: Architecture by lazy {
 
         memScoped {
@@ -99,24 +87,12 @@ actual object Processor {
             else -> Architecture.UNKNOWN
         }
 
-    /**
-     * An enum describing a processor family.
-     */
     actual enum class Architecture {
 
-        /**
-         * Generic 32bit processor.
-         */
         X86,
 
-        /**
-         * Generic 64bit processor.
-         */
         AMD64,
 
-        /**
-         * Unknown architecture.
-         */
         UNKNOWN;
     }
 }
