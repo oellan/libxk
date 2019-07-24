@@ -32,7 +32,7 @@ actual object OperatingSystem {
         memScoped {
 
             val info = alloc<utsname>()
-            uname(info.ptr)
+            if (uname(info.ptr) != 0) throwException()
             info.release.toKString()
         }
     }

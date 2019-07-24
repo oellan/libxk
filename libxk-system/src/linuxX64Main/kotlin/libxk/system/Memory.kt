@@ -25,7 +25,7 @@ actual object Memory {
         get() = memScoped {
 
             val info = alloc<sysinfo>()
-            sysinfo(info.ptr)
+            if (sysinfo(info.ptr) != 0) throwException()
             ((info.freeram + info.freeswap) * info.mem_unit).toLong()
         }
 
@@ -37,7 +37,7 @@ actual object Memory {
         memScoped {
 
             val info = alloc<sysinfo>()
-            sysinfo(info.ptr)
+            if (sysinfo(info.ptr) != 0) throwException()
             ((info.totalram + info.totalswap) * info.mem_unit).toLong()
         }
     }
@@ -49,7 +49,7 @@ actual object Memory {
         get() = memScoped {
 
             val info = alloc<sysinfo>()
-            sysinfo(info.ptr)
+            if (sysinfo(info.ptr) != 0) throwException()
             (info.freeram * info.mem_unit).toLong()
         }
 
@@ -61,7 +61,7 @@ actual object Memory {
         memScoped {
 
             val info = alloc<sysinfo>()
-            sysinfo(info.ptr)
+            if (sysinfo(info.ptr) != 0) throwException()
             (info.totalram * info.mem_unit).toLong()
         }
     }

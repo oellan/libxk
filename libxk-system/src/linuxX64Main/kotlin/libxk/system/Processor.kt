@@ -7,12 +7,14 @@
 
 package libxk.system
 
-import kotlinx.cinterop.*
+import kotlinx.cinterop.alloc
+import kotlinx.cinterop.memScoped
+import kotlinx.cinterop.ptr
+import kotlinx.cinterop.toKString
 import native.libcpuid.cpu_id_t
 import native.libcpuid.cpu_identify
+import native.libcpuid.cpuid_error
 import native.libcpuid.cpuid_present
-import platform.posix.errno
-import platform.posix.sys_errlist
 import platform.posix.uname
 import platform.posix.utsname
 
@@ -29,9 +31,13 @@ actual object Processor {
         memScoped {
 
             val cpuid = alloc<cpu_id_t>()
-            cpu_identify(
-                null,
-                cpuid.ptr
+            if (cpu_identify(
+                    null,
+                    cpuid.ptr
+                ) == 0
+            ) throw RuntimeException(
+                cpuid_error()?.toKString()
+                ?: "Unknown error"
             )
             cpuid
         }
@@ -71,8 +77,7 @@ actual object Processor {
         memScoped {
 
             val name = alloc<utsname>()
-            if (uname(name.ptr) == -1)
-                throw RuntimeException("${sys_errlist[errno]}: calling uname")
+            if (uname(name.ptr) != 0) throwException()
             parseArch(name.machine.toKString())
         }
     }

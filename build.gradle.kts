@@ -1,7 +1,14 @@
+/*
+ * Copyright (c) 2019
+ *
+ * License under EUPL v1.2
+ * https://joinup.ec.europa.eu/collection/eupl/eupl-text-11-12
+ */
+
 import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
 
 group = "dev.oellan.libxk"
-version = "1"
+version = "2"
 
 buildscript {
 
