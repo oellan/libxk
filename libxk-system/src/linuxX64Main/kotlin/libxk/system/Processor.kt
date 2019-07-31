@@ -20,34 +20,31 @@ import platform.posix.utsname
 
 actual object Processor {
 
-    private val cpuid: cpu_id_t = {
+    private val cpuid: cpu_id_t
+
+    init {
 
         if (cpuid_present() != 1)
             throw RuntimeException("CPUID not supported")
 
-        memScoped {
+        cpuid = memScoped {
 
             val cpuid = alloc<cpu_id_t>()
             if (cpu_identify(
                     null,
                     cpuid.ptr
-                ) == 0
+                ) != 0
             ) throw RuntimeException(
                 cpuid_error()?.toKString()
                 ?: "Unknown error"
             )
             cpuid
         }
-    }()
+    }
 
     actual val brandName: String by lazy {
 
-        return@lazy memScoped {
-
-            val cpuid = alloc<cpu_id_t>()
-
-            cpuid.brand_str.toKString()
-        }
+        return@lazy cpuid.brand_str.toKString()
     }
 
     actual val physicalCoreCount by lazy {

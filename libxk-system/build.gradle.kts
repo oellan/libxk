@@ -4,7 +4,7 @@ kotlinMultiplatform {
 
         compilations["main"].apply {
 
-            cinterops.create("libcpuidLinuxX64")
+            cinterops.create("libcpuid")
         }
     }
 }

@@ -1,4 +1,0 @@
-headers = libcpuid.h
-package = native.libcpuid
-compilerOpts.linux = -I/usr/local/include/libcpuid
-linkerOpts.linux = -lcpuid -L/usr/local/lib
