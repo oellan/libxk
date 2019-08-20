@@ -1,0 +1,4 @@
+headers = gmp.h
+package = native.gmp
+compilerOpts.linux = -I/usr/include/x86_64-linux-gnu -I/usr/include
+linkerOpts.linux = -lgmp -L/usr/lib/x86_64-linux-gnu

@@ -11,6 +11,7 @@ Dependencies
 | Name     | Link                                |
 |----------|-------------------------------------|
 | libcpuid | https://github.com/anrieff/libcpuid |
+| libgmp   | https://gmplib.org/                 |
 
 Contribute
 ----------
