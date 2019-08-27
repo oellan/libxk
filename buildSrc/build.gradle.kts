@@ -13,7 +13,7 @@ dependencies {
     implementation(
         kotlin(
             "gradle-plugin",
-            version = "1.3.40"
+            version = "1.3.50"
         )
     )
 }
