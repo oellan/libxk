@@ -5,8 +5,6 @@
  * https://joinup.ec.europa.eu/collection/eupl/eupl-text-11-12
  */
 
-import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
-
 group = "dev.oellan.libxk"
 version = "3"
 
@@ -28,35 +26,7 @@ buildscript {
     }
 }
 
-subprojects {
-
-    apply<KotlinMultiplatformPluginWrapper>()
-
-    kotlinMultiplatform {
-
-        // Linux
-        linuxX64()
-
-        sourceSets {
-
-            commonMain {
-
-                dependencies {
-
-                    implementation(kotlin("stdlib-common"))
-                }
-            }
-
-            commonTest {
-
-                dependencies {
-
-                    implementation(kotlin("test-common"))
-                    implementation(kotlin("test-annotations-common"))
-                }
-            }
-        }
-    }
+allprojects {
 
     repositories {
 

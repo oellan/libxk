@@ -6,19 +6,44 @@
 
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.NamedDomainObjectContainerScope
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.get
+import org.gradle.kotlin.dsl.invoke
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 fun Project.kotlinMultiplatform(block: KotlinMultiplatformExtension.() -> Unit) {
 
-    try {
+    apply<KotlinMultiplatformPluginWrapper>()
+    (extensions["kotlin"] as KotlinMultiplatformExtension).apply {
 
-        (extensions["kotlin"] as KotlinMultiplatformExtension)
-    } catch (_: Throwable) { // Kotlin plugin not applied. Do not execute "block"
 
-        return
-    }.block()
+        // Linux
+        linuxX64()
+
+        sourceSets {
+
+            commonMain {
+
+                dependencies {
+
+                    implementation(kotlin("stdlib-common"))
+                }
+            }
+
+            commonTest {
+
+                dependencies {
+
+                    implementation(kotlin("test-common"))
+                    implementation(kotlin("test-annotations-common"))
+                }
+            }
+        }
+
+        block()
+    }
 }
 
 fun NamedDomainObjectContainerScope<KotlinSourceSet>.commonMain(block: KotlinSourceSet.() -> Unit) =
