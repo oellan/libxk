@@ -7,7 +7,7 @@
 
 package libxk.io.exceptions
 
-import libxk.io.File
+import libxk.io.file.File
 
 /**
  * Signals that an operation for an empty directory was called on a non-empty one.

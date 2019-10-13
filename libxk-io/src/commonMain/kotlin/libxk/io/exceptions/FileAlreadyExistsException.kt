@@ -7,7 +7,7 @@
 
 package libxk.io.exceptions
 
-import libxk.io.File
+import libxk.io.file.File
 
 /**
  * Signals that an operation using a non-existent file was called on a file that exists.

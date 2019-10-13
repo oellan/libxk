@@ -5,7 +5,7 @@
  * https://joinup.ec.europa.eu/collection/eupl/eupl-text-11-12
  */
 
-package libxk.io
+package libxk.io.file
 
 /**
  * An immutable representation of a file or directory in a filesystem.

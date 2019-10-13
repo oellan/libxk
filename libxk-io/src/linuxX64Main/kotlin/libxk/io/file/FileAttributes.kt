@@ -5,11 +5,8 @@
  * https://joinup.ec.europa.eu/collection/eupl/eupl-text-11-12
  */
 
-package libxk.io
+package libxk.io.file
 
-/**
- *
- */
 actual data class FileAttributes internal constructor(
     actual val lastModifiedTime: Long,
     actual val lastAccessTime: Long,

@@ -5,12 +5,13 @@
  * https://joinup.ec.europa.eu/collection/eupl/eupl-text-11-12
  */
 
-package libxk.io
+package libxk.io.file
 
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.ptr
 import kotlinx.cinterop.toKString
+import libxk.io.InputStream
 import libxk.io.exceptions.FileAlreadyExistsException
 import libxk.io.exceptions.IOException
 import libxk.io.exceptions.NoSuchFileException
