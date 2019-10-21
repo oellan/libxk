@@ -138,13 +138,13 @@ internal actual object DefaultFileSystem : FileSystem() {
 
     override fun normalizePath(pathElements: Array<String>): String {
 
-        if (pathElements.isEmpty()) throw IllegalArgumentException("No path elements provided")
+        require(pathElements.isNotEmpty()) { "No path elements provided" }
         val isAbsolute = pathElements[0].startsWith('/')
         val elements = mutableListOf<String>()
 
         pathElements.forEach { pathElement ->
 
-            if ('\u0000' in pathElement) throw IllegalArgumentException("Can't normalize path with null character")
+            require('\u0000' !in pathElement) { "Can't normalize path with null character" }
             for (pathSubElement in pathElement.split("[/\\\\]".toRegex())) {
 
                 if (pathSubElement.isEmpty() || pathElement == ".") continue
@@ -197,6 +197,34 @@ internal actual object DefaultFileSystem : FileSystem() {
             0.toULong()
         )?.toKString()
              ?: throwIOException()
+    }
+
+    override fun hasPermission(
+        file: File,
+        permission: FilePermission
+    ): Boolean =
+        file.exists() && access(
+            file.path,
+            permission.accessMode
+        ) == 0
+
+    override fun openInputStream(
+        file: File
+    ): InputStream {
+
+        if (!hasPermission(
+                file,
+                FilePermission.READ
+            )
+        )
+            throw IOException("Can't create an input stream on an unreadable file")
+        return DefaultFileInputStream(
+            fopen(
+                file.path,
+                "r"
+            )
+            ?: throwIOException()
+        )
     }
 
     private fun timespec.toMillis(): Long {

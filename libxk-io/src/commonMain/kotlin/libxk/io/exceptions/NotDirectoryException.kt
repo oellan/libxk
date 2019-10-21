@@ -12,6 +12,7 @@ import libxk.io.file.File
 /**
  * Signals that an operation for a directory was called on something different than a directory.
  */
+@ExperimentalUnsignedTypes
 class NotDirectoryException internal constructor(directory: String) : IOException("$directory is not a directory") {
 
     /**

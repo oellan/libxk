@@ -12,6 +12,7 @@ package libxk.io.file
  *
  * If no [fileSystem] is provided, the [default filesystem][DefaultFileSystem] is used.
  */
+@ExperimentalUnsignedTypes
 class File : Comparable<File> {
 
     private val fileSystem: FileSystem
@@ -100,6 +101,23 @@ class File : Comparable<File> {
      */
     val attributes: FileAttributes
         get() = fileSystem.getAttributes(this)
+
+    /**
+     *
+     */
+    fun hasPermission(
+        permission: FilePermission
+    ): Boolean =
+        fileSystem.hasPermission(
+            this,
+            permission
+        )
+
+    /**
+     *
+     */
+    fun openInputStream() =
+        fileSystem.openInputStream(this)
 
     override fun compareTo(other: File) =
         path.compareTo(other.path)

@@ -12,6 +12,7 @@ import libxk.io.file.File
 /**
  * Signals that an operation using a non-existent file was called on a file that exists.
  */
+@ExperimentalUnsignedTypes
 class FileAlreadyExistsException internal constructor(file: String) : IOException("$file already exists") {
 
     /**

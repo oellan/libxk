@@ -12,6 +12,7 @@ import libxk.io.file.File
 /**
  * Signals that an operation was called on a non existent file.
  */
+@ExperimentalUnsignedTypes
 class NoSuchFileException internal constructor(file: String) : IOException("$file do not exists") {
 
     /**

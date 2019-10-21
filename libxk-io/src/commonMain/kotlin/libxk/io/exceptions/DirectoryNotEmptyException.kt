@@ -12,6 +12,7 @@ import libxk.io.file.File
 /**
  * Signals that an operation for an empty directory was called on a non-empty one.
  */
+@ExperimentalUnsignedTypes
 class DirectoryNotEmptyException internal constructor(directory: String) : IOException("$directory is not empty") {
 
     /**
